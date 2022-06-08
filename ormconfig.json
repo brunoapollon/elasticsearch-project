@@ -1,14 +1,17 @@
-{
-  "type": "postgres",
-  "host": "localhost",
-  "port": 5432,
-  "username": "postgres",
-  "password": "postgres",
-  "database": "elastic-project",
-  "migrations": ["./src/database/migrations/*.ts"],
-  "entities": ["./src/entities/*.ts"],
-  "cli": {
-    "migrationsDir": "./src/database/migrations",
-    "entitiesDir": "src/entities"
+[
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "elastic-project",
+    "migrations": ["./src/database/migrations/*.ts"],
+    "entities": ["./src/entities/*.ts"],
+    "cli": {
+      "migrationsDir": "./src/database/migrations",
+      "entitiesDir": "./src/entities"
+    }
   }
-}
+]

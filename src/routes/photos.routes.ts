@@ -14,7 +14,10 @@ const deleteAllPhotosInElasticSearchController =
 
 photoRouter.post('/create-data-photos', generatePhotoDataController.store);
 photoRouter.post('/insert-elastic', insertPhotosInElasticController.store);
+
+photoRouter.get('/find/:photoId', photoController.show);
 photoRouter.get('/list', photoController.index);
+
 photoRouter.delete(
   '/delete-all-photos-elastic',
   deleteAllPhotosInElasticSearchController.delete,

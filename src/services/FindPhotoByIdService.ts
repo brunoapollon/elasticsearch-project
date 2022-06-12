@@ -1,6 +1,10 @@
 import { clientElasticSearch } from 'src/client/elasticsearch';
 import { Photo } from 'src/entities/Photo';
 
+interface IFindPhptpByIdServiceRequest {
+  photoId: string;
+}
+
 type SearchRetrunType = {
   _index: string;
   _type: string;
@@ -8,18 +12,19 @@ type SearchRetrunType = {
   _score: number;
   _source: Photo;
 };
-
-class FindAllPhotosService {
-  public async exevute(): Promise<SearchRetrunType[]> {
+class FindPhotoByIdService {
+  public async execute({
+    photoId,
+  }: IFindPhptpByIdServiceRequest): Promise<SearchRetrunType[]> {
     const { hits } = await clientElasticSearch.search<Photo>({
       index: 'photos',
-      size: 6000,
+      q: `id:${photoId}`,
     });
 
-    const photos = hits.hits;
+    const photo = hits.hits;
 
-    return photos;
+    return photo;
   }
 }
 
-export { FindAllPhotosService };
+export { FindPhotoByIdService };

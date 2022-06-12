@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
-import { clientElasticSearch } from 'src/client/elasticsearch';
+import { FindAllPhotosService } from 'src/services/FindAllPhotosService';
 
 class PhotoController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const photoDataElastic = await clientElasticSearch.search({
-      index: 'photos',
-      size: 6000,
-    });
+    const findAllPhotosService = new FindAllPhotosService();
+
+    const photoDataElastic = await findAllPhotosService.exevute();
 
     return response.status(200).json(photoDataElastic);
   }
